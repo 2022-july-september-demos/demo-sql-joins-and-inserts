@@ -17,6 +17,16 @@ describe('owners routes', () => {
       pets: expect.any(Array),
     });
   });
+
+  it('GET /owners/:id should return an individual owner and their pets', async () => {
+    const resp = await request(app).get('/owners/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      name: expect.any(String),
+      pets: expect.any(Array),
+    });
+  });
   afterAll(() => {
     pool.end();
   });
